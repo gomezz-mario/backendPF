@@ -1,0 +1,1 @@
+Este proyecto trata de un ecommerce.

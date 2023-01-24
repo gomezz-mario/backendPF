@@ -1,0 +1,34 @@
+{
+  "name": "segunda_entrega_proyecto_final",
+  "version": "1.0.0",
+  "description": "Este proyecto trata de un ecommerce.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gomezz-mario/backendPF.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gomezz-mario/backendPF/issues"
+  },
+  "homepage": "https://github.com/gomezz-mario/backendPF#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6",
+    "mongoose": "^6.8.4",
+    "mongoose-paginate-v2": "^1.7.1",
+    "pre": "^0.1.3",
+    "socket.io": "^4.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

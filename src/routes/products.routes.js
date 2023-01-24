@@ -1,5 +1,5 @@
 import { Router } from "express";
-import productModel from "../dao/models/productModel.js";
+import productsModel from "../dao/models/productsModel.js";
 
 const router = Router();
 
@@ -27,7 +27,7 @@ router.get('/', async(request, response) => {
     }
   }
 
-  const {docs: payload, totalPages, prevPage, nextPage, page, hasPrevPage, hasNextPage, totalDocs} = await productModel.paginate(filter, options);
+  const {docs: payload, totalPages, prevPage, nextPage, page, hasPrevPage, hasNextPage, totalDocs} = await productsModel.paginate(filter, options);
   
   if(page <= totalPages){
     response.status(200).json({

@@ -4,6 +4,7 @@ import http from 'http';
 import __dirname from './utils.js';
 import productsRouter from './routes/products.routes.js';
 import cartsRouter from './routes/carts.routes.js';
+import viewsRouter from './routes/views.routes.js';
 
 const app = express();
 const server = http.createServer(app);
@@ -18,6 +19,6 @@ app.set('view engine', 'handlebars');
 
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
-//app.use("/", homeHandlebar);
+app.use("/views", viewsRouter);
 
 export default server;

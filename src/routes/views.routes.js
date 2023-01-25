@@ -93,4 +93,11 @@ router.get('/products/details/:pid', async (request, response) => {
 	}
 });
 
+router.get('/login', (request, response) => {
+	response.render('sessions/login');
+});
+router.get('/register', (request, response) => {
+	response.render('sessions/register');
+});
+
 export default router;

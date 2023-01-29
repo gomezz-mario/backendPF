@@ -1,0 +1,179 @@
+<div class="container-fluid d-flex align-items-center justify-content-center vh-100 m-0" style="background-color: #4070f4;">
+	<section class="container d-flex align-items-center justify-content-center vh-100 m-0 me-5 forms">
+		<div class="container-fluid rounded-4 p-5 mt-5 form login" style="background: #FFF; max-width: 430px;">
+			<div class="form-content">
+				<h1 class="text-center font-weigth-semi-bold h1-font-size" style="color: #232836;">Iniciar Sesión</h1>
+				<form id="form-login" class="mt-5">
+					<div class="field input-field w-100 mt-3 rounded-2">
+						<input type="email" placeholder="Email" name="email" class="w-100 h-100 rounded-2 font-weigth-normal font-size-base">
+					</div>
+					<div class="field input-field w-100 mt-3 rounded-2">
+						<input type="password" placeholder="Password" name="password" class="w-100 h-100 rounded-2 font-weigth-normal font-size-base password">
+						<i class="bi bi-eye-slash eye-icon"></i>
+					</div>
+					<div class="text-center mt-2">
+						<a class="link" href="#">Olvidaste tu contraseña?</a>
+					</div>
+					<div class="field button-field w-100 mt-3 rounded-2">
+						<button id="btn-login" class="w-100 h-100 border-0 rounded-2 font-weigth-normal font-size-base" style="font-weight: 500;">Iniciar Sesión</button>
+					</div>
+					<div class="text-center mt-2">
+						<span class="link">Aún no tienes cuenta? <a href="" class="form-link">Regístrate.</a></span>
+					</div>
+				</form>
+			</div>
+			<div class="line"></div>
+			<a href="/api/sesion/login-github" class="d-flex align-items-center justify-content-center mt-3 rounded-2 field github">
+				<i class="bi bi-github github-icon"></i>
+				<span style="font-weight: 500; opacity: 0.8;">Iniciar Sesión con Github</span>
+			</a>
+			<a href="/api/sesion/login-google" class="d-flex align-items-center justify-content-center mt-3 rounded-2 field google">
+				<img src="/images/google.png" alt="google-img" class="google-img">
+				<span style="color: #232836; opacity: 0.7; font-weight: 500;">Iniciar Sesión con Google</span>
+			</a>
+		</div>
+
+		<!-- Formulario de Registro-->
+		<div class="container-fluid rounded-4 p-5 mt-5 form signup" style="background: #FFF; max-width: 430px;">
+			<div class="form-content">
+				<h1 class="text-center font-weigth-semi-bold h1-font-size" style="color: #232836;">Registrarse</h1>
+				<form id="form-signup" class="mt-5">
+					<div class="field input-field w-100 mt-3 rounded-2">
+						<input type="email" placeholder="Email" name="email" class="w-100 h-100 rounded-2 font-weigth-normal font-size-base">
+					</div>
+					<div class="field input-field w-100 mt-3 rounded-2">
+						<input type="password" placeholder="Password" name="password" class="w-100 h-100 rounded-2 font-weigth-normal font-size-base password">
+						<i class="bi bi-eye-slash eye-icon"></i>
+					</div>
+					<div class="field input-field w-100 mt-3 rounded-2">
+						<input type="password" placeholder="Password" name="password2" class="w-100 h-100 rounded-2 font-weigth-normal font-size-base password">
+						<i class="bi bi-eye-slash eye-icon"></i>
+					</div>
+
+					<div class="field button-field w-100 mt-3 rounded-2">
+						<button id="btn-signup" class="w-100 h-100 border-0 rounded-2 font-size-base" style="font-weight: 500;">Registrarse</button>
+					</div>
+					<div class="text-center mt-2">
+						<span class="link">Tienes cuenta? <a href="" class="form-link">Inicia sesión.</a></span>
+					</div>
+				</form>
+			</div>
+			<div class="line"></div>
+			<a href="/api/sesion/login-github" class="d-flex align-items-center justify-content-center mt-3 rounded-2 field github">
+				<i class="bi bi-github github-icon"></i>
+				<span style="font-weight: 500; opacity: 0.8;">Iniciar Sesión con Github</span>
+			</a>
+			<a href="/api/sesion/login-google" class="d-flex align-items-center justify-content-center mt-3 rounded-2 field google">
+				<img src="/images/google.png" alt="google-img" class="google-img">
+				<span style="color: #232836; opacity: 0.7; font-weight: 500;">Iniciar Sesión con Google</span>
+			</a>
+		</div>
+	</section>
+
+</div>
+
+<script src="/js/index.js"></script>
+
+<style>
+	.form{
+		position: absolute;
+	}
+	.form.signup{
+		opacity: 0;
+		pointer-events: none;
+	}
+	.form .field{
+		position: relative;
+		height: 50px;
+	}
+	.field input{
+		outline: none;
+		padding: 0 15px;
+		border: 1px solid #cacaca;
+	}
+	.field button{
+		color: #FFF;
+		background-color: #0171d3;
+		transition: all 0.3s ease;
+	}
+	.field button:hover{
+		background-color: #268feb;
+	}
+	.link {
+		font-size: 14px;
+		font-weight: 400;
+		color: #232836;
+	}
+	.form a{
+		color: #0171d3;
+		text-decoration: none;
+	}
+	.form-content a:hover{
+		text-decoration: underline;
+	}
+	.eye-icon{
+		position: absolute;
+		top: 50%;
+		right: 10px;
+		transform: translateY(-50%);
+		font-size: 18px;
+		color: #8b8b8b;
+		padding: 5px;
+		cursor: pointer;
+	}
+	.line{
+		position: relative;
+		height: 1px;
+		width: 100%;
+		margin: 36px 0;
+		background-color: #8b8b8b;
+	}
+	.line::before{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		padding: 0 15px;
+		color: #232836;
+		background-color: #FFF;
+		content: 'Or';
+	}
+	
+
+	a.github{
+		position: relative;
+		color: #FFF;
+		background-color: #0d1117;
+	}
+	.github-icon,
+	img.google-img{
+		position: absolute;
+		top: 50%;
+		left: 15px;
+		transform: translateY(-50%);
+		font-size: 30px;
+	}
+	a.google{
+		border: 1px solid #cacaca;
+	}
+	img.google-img{
+		left: 10px;
+		height: 35px;
+		width: 35px;
+		object-fit: cover;
+	}
+
+	.form.signup{
+		opacity: 0;
+		pointer-events: none;
+	}
+	.forms.show-signup .form.signup{
+		opacity: 1;
+		pointer-events: auto;
+	}
+	.forms.show-signup .form.login{
+		opacity: 0;
+		pointer-events: none;
+	}
+
+</style>

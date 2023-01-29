@@ -1,15 +1,15 @@
-<div class="container-fluid mt-5 text-center">
-	<h1>HOME</h1>
+<h1>HOME</h1>
+
+<div class="container-fluid mt-5">
 	<div class="container d-flex justify-content-center">
-		<div class="d-flex justify-content-start align-items-start flex-wrap">	
-			{{#if payload.length}}
-				{{#each payload}}
-					<a href= "/views/products/details/{{this._id}}">
+		<div class="d-flex justify-content-start align-items-start flex-wrap">
+			{{#if data.payload.length}}
+				{{#each data.payload}}
+					<a href="/views/products/details/{{this._id}}">
 						<div class="card m-1" style="width: 300px; height: 350px;">
   							<img src={{this.image}} class="card-img-top">
   							<div class="card-body">
     							<h6 class="card-text text-truncate">{{this.name}}</h6>
-								<span>{{this.price}}</span>
   							</div>
 						</div>	
 					</a>
@@ -18,3 +18,5 @@
 		</div>
 	</div>
 </div>
+
+

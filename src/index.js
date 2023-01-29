@@ -9,9 +9,9 @@ const port = process.env.PORT || 8080;
 
 connectToDb()
 	.then(() => {
-		console.log('Conexión a Mongo Atlas: Ok');
+		//console.log('Conexión a Mongo Atlas: Ok');
 		const httpServer = server.listen(port);
-		console.log('Servidor escuchando.');
+		//console.log('Servidor escuchando.');
 		//sockets(new SocketServer(httpServer));
 		//console.log('Sockets escuchando.');
 	})

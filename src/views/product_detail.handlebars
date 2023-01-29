@@ -1,0 +1,41 @@
+<h1>PRODUCT DETAILS</h1>
+
+<div class="container-fluid mt-5">
+	<div class="container d-flex justify-content-center">
+		<div class="row column-gap-3">
+			<div class="col col-auto">
+				<div class="row">
+					<div class="col col-auto d-flex flex-column row-gap-2 py-2">
+						{{#if product.thumbnails.length}}
+							{{#each product.thumbnails}}
+								<img src={{this}} class="img-thumbnail" height="90" width="90">
+							{{/each}}
+						{{/if}}
+					</div>
+					<div class="col col-auto py-2">
+						<img src={{product.image}} class="img-thumbnail" height="400" width="400">
+					</div>
+				</div>
+			</div>
+			<div class="col col-md-6 py-2">
+				
+				<!-- DATA DEL PRODUCTO -->
+				<div>
+					<h2>{{product.name}}</h2>
+					<p>{{product.description}}</p>
+					<h3>${{product.price}}</h3>	
+				</div>
+				<!-- ITEM COUNT Y AGREGAR AL CARRITO -->
+				<div class="mt-5">
+					<span style="font-weight: bold; font-size:medium;">Stock disponible</span>
+					<div class="d-flex align-items-center my-3">
+						<span>Cantidad: </span>
+						<input class="form-control mx-1" type="number" id="input-quantity" style="width: 70px;">
+						<span style="font-size: 10px;">(112 disponibles)</span>
+					</div>
+					<button type="button" class="btn btn-primary" id="addToCart">Comprar ahora</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

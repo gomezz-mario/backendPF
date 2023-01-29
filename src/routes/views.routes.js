@@ -5,64 +5,26 @@ import cartsModel from '../dao/models/cartsModel.js';
 const router = Router();
 
 router.get('/products', async (request, response) => {
+	//if(!request.session.user) return response.redirect('/views/iniciarsesion');
 
-	const options = {};
-  	options.limit = Number(request.query.limit)  || 10;
-  	options.page = Number(request.query.page) || 1;
-  
-  	const metodoDeOrdenamiento = request.query.sort && request.query.sort === 'precio-ascendente' || request.query.sort === 'precio-ascendente' ? request.query.sort : null;
-  	if(metodoDeOrdenamiento){
-    	if(metodoDeOrdenamiento === 'precio-ascendente'){
-      		options.sort = { price: 1 };
-    	}
-    	if(metodoDeOrdenamiento === 'precio-descendente'){
-      		options.sort = { price: -1 };
-    	}
-  	}
-  
-  	let filter = {};
-  	const metodoDeFiltrado = request.query.filter && request.query.filter === 'disponible' ? request.query.filter : null;
-  	if(metodoDeFiltrado){  
-    	if(metodoDeFiltrado === 'disponible'){
-      		filter = { status: true };
-    	}
-  	}
-
-	try {
-		const {docs: payload, totalPages, prevPage, nextPage, page, hasPrevPage, hasNextPage, totalDocs} = await productsModel.paginate(filter, options);
-		if(page <= totalPages){
-			const data = {
-				status: 'success',
-				  totalDocs,
-				  payload,
-				  totalPages,
-				  prevPage,
-				  nextPage,
-				  page,
-				  hasPrevPage,
-				  hasNextPage,
-				  prevLink: hasPrevPage ? `/api/products/?page=${prevPage}&limit=${options.limit}${metodoDeFiltrado ? `&filter=${metodoDeFiltrado}`: ''}${metodoDeOrdenamiento ? `&sort=${metodoDeOrdenamiento}`:''}`: null,
-				  nextLink: hasNextPage ? `/api/products/?page=${nextPage}&limit=${options.limit}${metodoDeFiltrado ? `&filter=${metodoDeFiltrado}`: ''}${metodoDeOrdenamiento ? `&sort=${metodoDeOrdenamiento}`:''}`: null,
-			}
-			//console.log('data: ', data);
-			response.render('home', data);
-		} else{
-			const data = {
-				status: 'error',
-				message: 'Página no encontrada.'
-			};
-			response.render('error', data)
-		}	
-	} catch (error) {
-		const data = {
-			status: 'error',
-			message: 'Ha ocurrido un error en la consulta a base de datos.'
-		}
-		console.log('Ha ocurrido un error en la consulta a la base de datos. Error: ', error);
-		response.render('error', data);
-	}
+	const url = `http://localhost:8080/api/products/?limit=${request.query.limit||10}&page=${request.page||1}
+		${request.query.filter ? `&filter=${request.query.filter}` : ''}
+		${request.query.sort ? `&sort=${request.query.sort}` : ''}
+	`;
+	//falta try catch
+	const result = await(await fetch(url, {
+     	method: 'GET',
+      	headers: {
+        	accept: 'application/json',
+      	},
+    })).json();
+	response.render('home', {data: result});
 });
 
+router.get('/ok', (request, response) => {
+	//console.log("HAGAN ALGOO")
+	response.render('ok')}
+);
 router.get('/carts/:cid', async (request, response) => {
 	const { cid } = request.params;
 	try {
@@ -81,23 +43,32 @@ router.get('/carts/:cid', async (request, response) => {
 router.get('/products/details/:pid', async (request, response) => {
 	const { pid } = request.params;
 	try {
-		const product = await productsModel.findOne({"_id" : pid});
-		response.render('product_detail', product);
+		const url = `http://localhost:8080/api/products/${pid}`;
+		const product = await(await fetch(url, {
+			method: 'GET',
+			 headers: {
+			   accept: 'application/json',
+			 },
+	   	})).json();
+		response.render('product_detail', {product});
 	} catch (error) {
 		const data = {
 			status: 'error',
-			message: 'Ha ocurrido un error en la consulta a base de datos.'
+			message: 'Ha ocurrido en la consulta a /api/products.'
 		};
-		console.log('Ha ocurrido un error en la consulta a la base de datos. Error: ', error);
+		console.log('Ha ocurrido en la consulta a /api/products. Error: ', error);
 		response.render('error', data);
 	}
 });
 
-router.get('/login', (request, response) => {
-	response.render('sessions/login');
+router.get('/iniciarsesion', (request, response) => {
+	response.render('sessions/login_and_register');
 });
-router.get('/register', (request, response) => {
-	response.render('sessions/register');
-});
+
+
+router.get('/error', (request, response) => {
+	const error = request.body.error;
+	response.render('errors', {error});
+})
 
 export default router;

@@ -51,6 +51,14 @@ router.get('/', async(request, response) => {
   }
 }); 
  
+router.get('/:pid', async(request, response) => {
+  const pid = request.params.pid;
+  const product = await productsModel.findById(pid).lean().exec();
+  response.json(product);
+});
+
+
+
 router.post('/', async(request, response) => {});
 router.put('/', async(request, response) => {});
 router.delete('/', async(request, response) => {});

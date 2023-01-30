@@ -36,19 +36,18 @@ links.forEach(link => {
 	});
 });
 
-document.getElementById("btn-login").addEventListener("click", (e) => {
+document.getElementById("btn-login").addEventListener("click", async (e) => {
 	e.preventDefault();
 	const formLogin = document.getElementById("form-login");
 	const email = formLogin['email'].value;
 	const password = formLogin['password'].value;
-	fetch('/api/sesion/login-local', {
+	await fetch('/api/sesion/login-local', {
 		method: 'POST',
 		headers: {'Content-Type': 'application/json'},
-		body: JSON.stringify({email, password})
+		body: JSON.stringify({email, password}),
 	});
-
 });
-document.getElementById("btn-signup").addEventListener("click", (e) => {
+document.getElementById("btn-signup").addEventListener("click", async (e) => {
 	e.preventDefault();
 	const formLogin = document.getElementById("form-signup");
 	const email = formLogin['email'].value;
@@ -56,11 +55,16 @@ document.getElementById("btn-signup").addEventListener("click", (e) => {
 	const password2 = formLogin['password2'].value;
 	let passwordValidated = password === password2;
 	if(passwordValidated){
-		fetch('/api/sesion/signup-local', {
+		const response = await fetch('/api/sesion/signup-local', {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify({email, password})
+			body: JSON.stringify({email, password}),
+			
 		});
+		if(response.status === 200){
+			console.log('response: ', response);
+			return fetch('/views/products');
+		}
 	}
 });
 

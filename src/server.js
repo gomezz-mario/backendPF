@@ -56,7 +56,6 @@ app.use((_req, res, next) => {
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
 app.use('/api/sesion/', sessionRouter);
-//app.use('/users', usersRouter);
 app.use('/views', viewsRouter);
 
 export default server;
